@@ -1,0 +1,22 @@
+{
+  "apps": [
+    {
+      "name": "readability-server",
+      "script": "src/server.js",
+      "instances": 1,
+      "exec_mode": "fork",
+      "node_args": "--max-old-space-size=150",
+      "max_memory_restart": "200M",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": "3000",
+        "FETCH_TIMEOUT_MS": "30000"
+      },
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "merge_logs": true,
+      "kill_timeout": 10000,
+      "listen_timeout": 8000,
+      "shutdown_with_message": false
+    }
+  ]
+}
