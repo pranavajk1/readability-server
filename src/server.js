@@ -85,6 +85,11 @@ app.post('/', async (req, res) => {
     // more importantly, prevents console event listeners from holding DOM
     // objects alive after window.close().
     const virtualConsole = new VirtualConsole();
+    // Without a 'jsdomError' listener, JSDOM throws CSS parse errors as real
+    // exceptions. Modern sites use CSS custom properties (e.g. var(--x, 1px))
+    // that JSDOM's parser can't handle — these are non-fatal and don't affect
+    // Readability's ability to extract article content, so we suppress them.
+    virtualConsole.on('jsdomError', () => {});
 
     // Key memory leak fix: do NOT pass `resources: 'usable'`.
     // The default (no external resources) means JSDOM will not fetch
