@@ -4,3 +4,4 @@ node_modules
 *.md
 .gitignore
 .dockerignore
+test-memory.sh
